@@ -23,9 +23,3 @@ class NYTHeadlineGrabber:
     def get_headlines(self, search):
         self.parsed = json.loads(self.get_json(search))
         return self.parse_headlines()
-
-
-if __name__ == "__main__":
-    hg = NYTHeadlineGrabber()
-    for h in hg.get_headlines("trudeau"):
-        print h
