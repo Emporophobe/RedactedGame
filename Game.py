@@ -60,7 +60,8 @@ class Game:
             print headline
         won = False
         for i in xrange(self._guesses):
-            guess = raw_input("> ")
+            prompt = "> " if len(topic.split()) == 1 else "{0} words > ".format(len(topic.split()))
+            guess = raw_input(prompt)
             if guess.lower() == topic.lower():
                 print "Yay!"
                 won = True
@@ -68,7 +69,8 @@ class Game:
             else:
                 print ":("
                 continue
-
+        if not won:
+            print "Answer: {0}".format(topic)
         return won
 
     def play(self, rounds):

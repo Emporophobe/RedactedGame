@@ -24,13 +24,13 @@ class Censor:
         censored = []
         for headline in original:
             new_headline = []
-            for word in headline.split():
-                # Randomly select additional words to censor in addition to the key word
-                if term.lower() in word.lower()\
-                        or (random.random() < random_censoring and len(word) > 2):  # len > 2 so words like "a" are ok
-                    new_headline.append(self.censor_char * len(word))
+            for headline_word in headline.split():
+                if any(map(lambda search_word: search_word.lower() in headline_word.lower(), term.split()))\
+                        or (len(headline_word) > 2 and random.random() < random_censoring):
+                    new_headline.append(self.censor_char * len(headline_word))
                 else:
-                    new_headline.append(word)
+                    new_headline.append(headline_word)
+                    
             censored.append(" ".join(new_headline))
 
         return censored

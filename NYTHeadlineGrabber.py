@@ -19,7 +19,7 @@ class NYTHeadlineGrabber:
         :param search: The search query
         :return: A json-formatted string containing the articles about the search
         """
-        return urllib2.urlopen(self.api_url + "?q=" + search).read()
+        return urllib2.urlopen(self.api_url + "?q=" + search.replace(" ", "%20")).read()  # %20 replaces space in URLs
 
     def parse_headlines(self):
         """
